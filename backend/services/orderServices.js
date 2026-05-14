@@ -83,7 +83,7 @@ export const createOrderService = async ({ user_id, restaurant_id, body }) => {
 };
 
 export const getOrderService = async (user) => {
-  const { role, user_id } = user;
+  const { role, user_id, country } = user;
 
   if (!role || !user_id) {
     const err = new Error("Please provide both role and user_id");
@@ -91,7 +91,7 @@ export const getOrderService = async (user) => {
     throw err;
   }
 
-  const orders = await getOrdersFromDB({ role, user_id });
+  const orders = await getOrdersFromDB({ role, user_id, country });
 
   if (orders.length === 0 || !orders) {
     const err = new Error("Orders not found!");

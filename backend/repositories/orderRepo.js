@@ -29,11 +29,11 @@ export const createOrderInDB = async ({ client, user_id, restaurant_id }) => {
   return result.rows[0]?.order_id || null;
 };
 
-export const getOrdersFromDB = async ({ role, user_id }) => {
+export const getOrdersFromDB = async ({ role, user_id, country }) => {
   let query;
   let values = [];
 
-  if (role === "admin" || role === "manager") {
+  if (role === "admin") {
     query = `
       SELECT
         order_id,
@@ -45,6 +45,25 @@ export const getOrdersFromDB = async ({ role, user_id }) => {
       FROM orders 
       ORDER BY created_at DESC
     `;
+  } else if (role === "manager") {
+    query = `
+      SELECT
+        o.order_id,
+        o.payment_status,
+        o.payment_method,
+        o.order_status,
+        o.order_amount,
+        o.created_at
+      FROM orders o
+      JOIN users u ON u.user_id = o.user_id
+      WHERE u.country = $1
+        AND (
+          u.role = 'member'
+          OR u.user_id = $2
+        )
+      ORDER BY o.created_at DESC
+    `;
+    values = [country, user_id];
   } else {
     query = `
       SELECT

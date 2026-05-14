@@ -53,6 +53,6 @@
   }
 
   .active {
-    @apply bg-purple-700 text-white shadow shadow-purple-200;
+    @apply bg-purple-600 text-white shadow shadow-purple-200;
   }
 }

@@ -6,7 +6,7 @@ import { AuthContext } from "../context/authContext";
 import Swal from "sweetalert2";
 
 export default function Navbar() {
-  const { setAuth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
@@ -47,10 +47,13 @@ export default function Navbar() {
             Orders
           </NavLink>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center gap-2">
+          <h1 className="bg-purple-100 text-purple-800 rounded px-2">
+            Hi! {auth.username}
+          </h1>
           <button
             onClick={handleLogout}
-            className="text-xl bg-purple-200 font-bold text-red-400 px-2 rounded-lg hover:scale-110 hover:text-red-500"
+            className="text-xl bg-purple-100 font-bold text-red-400 px-2 py-1 rounded-lg hover:scale-110 hover:text-red-500"
           >
             <FaPowerOff />
           </button>
