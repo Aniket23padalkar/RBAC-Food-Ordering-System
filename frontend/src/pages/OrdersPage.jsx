@@ -8,7 +8,7 @@ import { updatePaymentMethod } from "../api/PaymentApi";
 
 export default function OrdersPage() {
   const { auth } = useContext(AuthContext);
-  const [orders, setOrders] = useState(null);
+  const [orders, setOrders] = useState([]);
   const [activeOrder, setactiveOrder] = useState(null);
   const [orderItems, setOrderItems] = useState(null);
   const [viewCheckout, setViewCheckout] = useState(false);
@@ -236,6 +236,11 @@ export default function OrdersPage() {
               ))}
             </tbody>
           </table>
+          {orders.length === 0 && (
+            <div className="flex h-full w-full justify-center items-center text-2xl">
+              Nothing to Show
+            </div>
+          )}
           {viewCheckout && (
             <CheckOut
               setViewCheckout={setViewCheckout}
