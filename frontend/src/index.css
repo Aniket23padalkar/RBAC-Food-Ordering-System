@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@layer base {
+  html,
+  body,
+  #root {
+    /* height: 100vh; */
+    min-height: 100%;
+    width: 100%;
+  }
+  #root {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  th,
+  td {
+    text-align: center;
+    height: 2.5rem;
+    text-transform: capitalize;
+  }
+  th {
+    padding: 0 15px;
+    font-weight: 400;
+  }
+  td {
+    font-size: 0.9rem;
+  }
+
+  tr td:first-child,
+  th:first-child {
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+  }
+
+  tr td:last-child,
+  th:last-child {
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+  }
+}
+
+@layer utilities {
+  .bg-image {
+    background-image: url("./src/assets/login-bg.jpg");
+  }
+
+  .input {
+    @apply placeholder:text-white/70 border-b h-10 w-70 text-lg focus:border-purple-400 pl-8 outline-none mt-2;
+  }
+
+  .active {
+    @apply bg-purple-700 text-white shadow shadow-purple-200;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "db:create": "psql -U postgres -c \"CREATE DATABASE rbac_food_ordering_db\"",
+    "db:schema": "psql -U postgres -d rbac_food_ordering_db -f ./db/schema.sql",
+    "db:seed": "node ./db/seedUsers.js && node ./db/seedData.js",
+    "db:setup": "npm run db:create && npm run db:schema && npm run db:seed"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "nodemon": "^3.1.14",
+    "pg": "^8.20.0"
+  }
+}
