@@ -227,7 +227,7 @@ export default function OrdersPage() {
                         order.order_status === "cancelled"
                       }
                       onClick={() => handleCancelOrder(order.order_id)}
-                      className="bg-red-400 p-1 text-white rounded disabled:bg-gray-300 disabled:text-gray-500"
+                      className="bg-red-400 p-1 text-white rounded cursor-pointer hover:bg-red-300 disabled:bg-gray-300 disabled:text-gray-500"
                     >
                       Cancel
                     </button>
